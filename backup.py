@@ -15,7 +15,7 @@ def is_linux():
 class Config:
     def __init__(self, config_path='config.json'):
         try:
-            with open('config.json') as f:
+            with open(config_path) as f:
                 self._config = json.load(f)
         except FileNotFoundError:
             print(f'{config_path} does not exist')
@@ -105,8 +105,12 @@ class Timestamps:
 
     def set_timestamp(self, guildId, timestamp) -> None:
         self._timestampsGuilds[guildId] = timestamp
-        with open(self._timestamp_path, 'r', encoding='utf-8') as f:
-            json_content = json.load(f)
+        try:
+            with open(self._timestamp_path, 'r', encoding='utf-8') as f:
+                json_content = json.load(f)
+
+        except FileNotFoundError:
+            json_content = {}
 
         with open(self._timestamp_path, 'w', encoding='utf-8') as f:
             json_content['lastExportsTimestamps'] = self._timestampsGuilds
