@@ -7,7 +7,7 @@ import subprocess
 
 # dry run option for development
 DRY_RUN = False
-DOCKER_IMAGE = "tyrrrz/discordchatexporter:2.45"
+DOCKER_IMAGE = "tyrrrz/discordchatexporter:2.46"
 
 def is_linux():
     return os.name == 'posix' and 'linux' in os.uname().sysname.lower()
