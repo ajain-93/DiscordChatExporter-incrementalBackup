@@ -1,6 +1,7 @@
 node_modules
 metadata.json
 config.json
+cache/
 exports/
 *.exe
 dce/*
