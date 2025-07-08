@@ -15,7 +15,7 @@ def is_linux():
 class Config:
     def __init__(self, config_path='config.json'):
         try:
-            with open(config_path) as f:
+            with open(config_path, encoding='utf-8') as f:
                 self._config = json.load(f)
         except FileNotFoundError:
             print(f'{config_path} does not exist')
@@ -157,7 +157,7 @@ class CommandRunner:
                 print("#########################################################################################")
                 print('# DiscordChatExporter dependency not found!                                             #')
                 print('#   (Windows) extract CLI version of DiscordChatExporter into `dce` folder              #')
-                print('#   (Linux)   sudo apt install docker.io; docker pull tyrrrz/discordchatexporter:stable #')
+                print('#   (Linux)   sudo apt install docker.io; docker pull tyrrrz/discordchatexporter:latest #')
                 print("#########################################################################################")
                 exit(1)
 
