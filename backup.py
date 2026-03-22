@@ -7,7 +7,7 @@ import subprocess
 
 # dry run option for development
 DRY_RUN = False
-DOCKER_IMAGE = "tyrrrz/discordchatexporter:2.46.1"
+DOCKER_IMAGE = "tyrrrz/discordchatexporter:2.47.1"
 DOCKER_CONTAINER_NAME = "discord-chat-exporter"
 
 def is_linux():
