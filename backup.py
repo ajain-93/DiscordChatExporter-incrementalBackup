@@ -8,6 +8,7 @@ import subprocess
 # dry run option for development
 DRY_RUN = False
 DOCKER_IMAGE = "tyrrrz/discordchatexporter:2.47.2"
+DOCKER_LABEL_ARGS = '--label "dockhand.notify=false"'
 DOCKER_CONTAINER_NAME = "discord-chat-exporter"
 
 def is_linux():
@@ -153,7 +154,7 @@ class CommandRunner:
                 custom_args = f'--token "{guild["tokenValue"]}" --media-dir "exports/{guild["guildName"]}/_media/" --output "exports/{guild["guildName"]}/{nowTimestampFolder}/"'
             elif is_linux() and shutil.which('docker') is not None:
                 print(f"Downloading using Docker version {DOCKER_IMAGE}")
-                dce_path = f'docker run --rm --name {DOCKER_CONTAINER_NAME} -i -v "$(pwd)/exports/{guild["guildName"]}/_media:/out/{guild["guildName"]}/_media" -v "$(pwd)/exports/{guild["guildName"]}/{nowTimestampFolder}:/out/{guild["guildName"]}/{nowTimestampFolder}" {DOCKER_IMAGE}'
+                dce_path = f'docker run --rm --name {DOCKER_CONTAINER_NAME} -i -v "$(pwd)/exports/{guild["guildName"]}/_media:/out/{guild["guildName"]}/_media" -v "$(pwd)/exports/{guild["guildName"]}/{nowTimestampFolder}:/out/{guild["guildName"]}/{nowTimestampFolder}" {DOCKER_LABEL_ARGS} {DOCKER_IMAGE}'
                 common_args = f'--format Json --media --reuse-media --fuck-russia --markdown false'
                 custom_args = f'--token "{guild["tokenValue"]}" --media-dir "{guild["guildName"]}/_media/" --output "{guild["guildName"]}/{nowTimestampFolder}/"'
             else:
